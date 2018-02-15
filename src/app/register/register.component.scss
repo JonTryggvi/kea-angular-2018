@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: center;
+  label {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+
+  }
+}

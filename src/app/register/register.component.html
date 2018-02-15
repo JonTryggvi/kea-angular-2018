@@ -1,0 +1,35 @@
+
+
+<form [formGroup]="registerForm" (submit)="onSubmit()" novalidate>
+  <h1 >{{ if(registerForm.controls.isSitter.value == true) { return 'Sitter'}else{return 'Baby'} | json }}</h1>
+  <!-- <h1 *ngIf="registerForm.controls.isSitter.value">Sitter</h1> -->
+  <label >Sitter:
+    <input type="checkbox" formControlName="isSitter">
+  </label>
+
+  <label class="">Firstname:
+    <input class="" formControlName="firstname">
+  </label>
+  <!-- <div *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">You must fill out your username</div> -->
+  <label class="">Lastname:
+    <input class="" formControlName="lastname">
+  </label>
+  <label class="">Birthdate:
+    <input class="" formControlName="birthDate">
+  </label>
+  <label class="">Area:
+    <input class="" formControlName="area">
+  </label>
+  <label class="">Rating:
+    <input type="number" class="" formControlName="rating">
+  </label>
+  <label class="" *ngIf="registerForm.controls.isSitter.value">Gender:
+    <input type="number" class="" formControlName="rating">
+  </label>
+  <label class="" *ngIf="registerForm.controls.isSitter.value">Rate:
+    <input type="number" class="" formControlName="rating">
+  </label>
+  <p>Form value: {{ registerForm.value | json }}</p>
+  <p>Form status: {{ registerForm.status | json }}</p>
+  <button type="submit" >Login</button>
+</form>
