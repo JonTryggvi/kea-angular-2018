@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { title } from 'process';
 
 @Component({
   selector: 'app-register',
@@ -8,9 +9,10 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(private fb: FormBuilder) { 
+  title = '';
+  constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
-      isSitter: ['', Validators.required],
+      isSitter: [''],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       birthDate: ['', Validators.required],
@@ -18,9 +20,25 @@ export class RegisterComponent implements OnInit {
       rating: ['', Validators.required]
 
     });
-  } 
+    console.log(this.registerForm.controls.isSitter);
+    
+    
+
+  }
+
+  onchange(registerForm) {
+    if (registerForm.controls.isSitter.value === true) {
+      title = 'Sitter';
+    } else {
+      title = 'Baby';
+    }
+  }
 
   ngOnInit() {
   }
 
 }
+
+
+
+

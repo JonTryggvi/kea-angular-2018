@@ -1,10 +1,10 @@
 
 
 <form [formGroup]="registerForm" (submit)="onSubmit()" novalidate>
-  <h1 >{{ if(registerForm.controls.isSitter.value == true) { return 'Sitter'}else{return 'Baby'} | json }}</h1>
+  <h1>this is a test of faith {{ title }}</h1>
   <!-- <h1 *ngIf="registerForm.controls.isSitter.value">Sitter</h1> -->
   <label >Sitter:
-    <input type="checkbox" formControlName="isSitter">
+    <input type="checkbox" formControlName="isSitter" (click)="getchange()">
   </label>
 
   <label class="">Firstname:

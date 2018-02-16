@@ -1,8 +1,8 @@
 <form [formGroup]="loginForm" (submit)="onSubmit()" novalidate>
-  <label class="">Uaer Name:
+  <label class="">User Name:
     <input class="" formControlName="username">
   </label>
-  <div *ngIf="loginForm.controls.username.errors?.required && loginForm.username.touched">You must fill out your username</div>
+  <div *ngIf="loginForm.controls.username.errors?.required">You must fill out your username</div>
   <label class="">Password:
     <input class="" formControlName="password">
   </label>
