@@ -1,27 +1,36 @@
 
 
 <form [formGroup]="registerForm" (submit)="onSubmit()" novalidate>
-  <h1 >{{ if(registerForm.controls.isSitter.value == true) { return 'Sitter'}else{return 'Baby'} | json }}</h1>
+  <h1>{{ registerFormTitle }}</h1>
   <!-- <h1 *ngIf="registerForm.controls.isSitter.value">Sitter</h1> -->
   <label >Sitter:
-    <input type="checkbox" formControlName="isSitter">
+    <input type="checkbox" formControlName="isSitter" (change)="onChange()">
   </label>
 
-  <label class="">Firstname:
-    <input class="" formControlName="firstname">
+  <label class="firstname">
+    <span class="{{ myValidator.spanClass_firstname }}">
+      <span *ngIf="myValidator.spanStar_firstname">*</span>Firstname:
+    </span>
+    <input class="{{ myValidator.inputClass_firstname }}" formControlName="firstname" (blur)="sendBlur('firstname')">
   </label>
   <!-- <div *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">You must fill out your username</div> -->
-  <label class="">Lastname:
-    <input class="" formControlName="lastname">
+  <label class="lastname">
+    <span class="{{ myValidator.spanClass_lastname }}">
+      <span *ngIf="myValidator.spanStar_lastname">*</span>Lastname:
+    </span>
+    <input class="{{ myValidator.inputClass_lastname }}" formControlName="lastname" (blur)="sendBlur('lastname')" >
   </label>
-  <label class="">Birthdate:
-    <input class="" formControlName="birthDate">
+  <label class="birthDay">
+    <span class="">
+      <span *ngIf="registerForm.controls.birthDate.status == 'INVALID' && !registerForm.controls.birthDate.pristine">*</span>Birthdate:
+    </span>
+    <input class="" type="date" class="" formControlName="birthDate" value="1990-01-02" >
   </label>
   <label class="">Area:
     <input class="" formControlName="area">
   </label>
   <label class="">Rating:
-    <input type="number" class="" formControlName="rating">
+    <input type="number" class="" formControlName="rating" min="1" max="5" value="1">
   </label>
   <label class="" *ngIf="registerForm.controls.isSitter.value">Gender:
     <input type="number" class="" formControlName="rating">
@@ -30,6 +39,7 @@
     <input type="number" class="" formControlName="rating">
   </label>
   <p>Form value: {{ registerForm.value | json }}</p>
+  <p>firstname value: {{ registerForm.controls.firstname.status | lowercase }}</p>
   <p>Form status: {{ registerForm.status | json }}</p>
-  <button type="submit" >Login</button>
+  <button type="submit" >Register</button>
 </form>
