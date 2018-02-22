@@ -1,21 +1,17 @@
+@import '~styles.scss';
 form {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  margin: 0 auto;
-  justify-content: center;
+ margin-top: 100px;
   label {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 40%;
     .spanError {
-      color: red;
+      color: $red;
       transition: all 300ms ease;
     }
     .inputError {
-      border: 1px solid red;
+      border: 1px solid $red;
       transition: all 300ms ease;
     }
   }

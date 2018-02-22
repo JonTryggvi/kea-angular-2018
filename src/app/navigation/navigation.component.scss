@@ -1,0 +1,36 @@
+@import '~styles.scss';
+.navbar {
+  display: flex;
+  width: 100%;
+  height: 44px;
+  justify-content: center;
+  background: $dark;
+  .container {
+    display: flex;
+    justify-content: flex-end;
+    width:90%;
+    .nav {
+      width: 25%;
+      display: flex;
+      justify-content: flex-end;
+      align-content: center;
+      list-style: none;
+      .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+        transition: all 300ms ease;
+        &:hover {
+          background: $body;
+          a {
+            color: $red;
+          }
+        }
+        a {
+          color: $body;
+        }
+      }
+    }
+  }
+}

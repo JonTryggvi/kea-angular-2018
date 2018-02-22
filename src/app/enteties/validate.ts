@@ -5,6 +5,10 @@ export class Validator {
   public inputClass_firstname: string;
   public spanStar_firstname: boolean;
   public spanStar_lastname: boolean;
+  public spanClass_birthDate: string;
+  public inputClass_birthDate: string;
+  public spanStar_birthDate: boolean;
+
 
   public checkforblur(theInput, formGroup) {
     console.log(formGroup);
@@ -21,6 +25,11 @@ export class Validator {
           this.inputClass_lastname = 'inputError';
           this.spanStar_lastname = true;
           break;
+        case 'birthDate':
+          this.spanClass_birthDate = 'spanError';
+          this.inputClass_birthDate = 'inputError';
+          this.spanStar_birthDate = true;
+          break;
         default:
           break;
       }
@@ -33,8 +42,13 @@ export class Validator {
           break;
         case 'lastname':
           this.spanClass_lastname = 'spanOk';
-          this.inputClass_lastname = 'spanOk';
+          this.inputClass_lastname = 'inputOk';
           this.spanStar_lastname = false;
+          break;
+        case 'birthDate':
+          this.spanClass_birthDate = 'spanOk';
+          this.inputClass_birthDate = 'inputOk';
+          this.spanStar_birthDate = true;
           break;
         default:
           break;
