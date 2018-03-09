@@ -1,4 +1,4 @@
-import { Person } from "./person";
+import { Person } from './person';
 
 export class Baby extends Person {
 

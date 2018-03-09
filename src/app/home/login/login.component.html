@@ -1,0 +1,19 @@
+<div class="page-container">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm" (submit)="onSubmit(loginForm)" novalidate>
+    <label class=""><span id="test" ><span class="spanError" *ngIf="!loginForm.controls.username.pristine && loginForm.controls.username.value === ''">* </span>User Name:</span> 
+      <input id="loginUserName" type="text" formControlName="username" >
+      <span class="validator-message" *ngIf="loginForm.controls.username.errors?.required && !loginForm.controls.username.pristine">You must fill out your username</span>
+    </label>
+   
+    <label class="">Password:
+      <input id="loginPassword" type="password"  formControlName="password" >
+    </label>
+    <label class="">Admin:
+      <input id="loginCheckAdmin" type="checkbox" class="" formControlName="admin">
+    </label>
+    <!-- <p>Form value: {{ loginForm.value | json }}</p>
+    <p>Form status: {{ loginForm.status | json }}</p> -->
+    <button type="submit" >Login</button>
+  </form>
+</div>

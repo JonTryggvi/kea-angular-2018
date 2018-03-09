@@ -1,0 +1,42 @@
+<div class="usersContainer">
+  <table *ngIf="aBabies">
+    <caption>The babies</caption>
+    <thead>
+      <tr>
+      <th>Baby name</th>
+      <th>Area</th>
+      <th>Birthdate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let aBabie of aBabies" routerLink="/portal/user-detail/{{aBabie.id}}">
+      <td>{{aBabie.firstname}} {{aBabie.lastname}}</td>
+      <td>{{aBabie.area}}</td>
+      <td>{{aBabie.birthdate | date:'mediumDate' }}</td>
+    </tr>
+  </tbody>
+
+  </table>
+  <table *ngIf="aSitters">
+    <caption>The sitters</caption>
+    <thead>
+      <tr>
+        <th>Sitter name</th>
+        <th>Area</th>
+        <th>Rate</th>
+        <th *ngIf="aSitters.rating > 0">Rating</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let aSitter of aSitters" routerLink="/portal/user-detail/{{aSitter.id}}">
+        <td>{{aSitter.firstname}} {{aSitter.lastname}}</td>
+        <td>{{aSitter.area}}</td>
+        <td>{{aSitter.rate}}kr</td>
+        <td *ngIf="aSitter.rating > 0">{{aSitter.rating}}</td>
+      </tr>
+    </tbody>
+   
+  </table>
+</div>
+

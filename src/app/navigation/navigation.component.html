@@ -1,15 +1,18 @@
-<nav class="navbar ">
+<nav class="navbar">
   <div class='container'>
     <ul class="nav">
-      <li class='nav-item'>
-        <a class='nav-link' routerLink="/home">Home</a>
+      <li class='nav-item' *ngIf="isLogged()">
+        <a id="test" class='nav-link' routerLink="/portal/register">Register</a>
       </li>
-    
-      <li class='nav-item'>
-        <a class='nav-link' routerLink="/login">Login</a>
+      <li class='nav-item' *ngIf="isLogged() && isAdmin()">
+        <a class='nav-link' routerLink="portal/users-list">Users list</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' routerLink="/register">Register</a>
+        <a class='nav-link' routerLink="/home/login" *ngIf="!isLogged()">Login</a>
+        <a class='nav-link' *ngIf="isLogged()" (click)="logOut()">Logout</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' routerLink="/home/about">About</a>
       </li>
     </ul>
   </div>
