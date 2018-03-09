@@ -1,0 +1,8 @@
+@import '~styles.scss';
+
+.validator-message {
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  color: $red;
+}

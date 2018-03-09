@@ -1,0 +1,56 @@
+
+<form [formGroup]="registerForm" (submit)="onSubmit(registerForm)" novalidate>
+  <h2>{{ registerFormTitle }}</h2>
+  <!-- <h1 *ngIf="registerForm.controls.isSitter.value">Sitter</h1> -->
+  <label>Sitter:
+    <input type="checkbox" formControlName="isSitter" (change)="onChange()">
+  </label>
+
+  <label class="firstname">
+    <span>
+      <span class="spanError" *ngIf="!registerForm.controls.firstname.pristine && registerForm.controls.firstname.value === '' ">*</span>Firstname:
+    </span>
+    <input id="firstname" type="text" class="" formControlName="firstname" >
+  </label>
+  <!-- <div *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">You must fill out your username</div> -->
+  <label class="lastname">
+    <span class="">
+      <span class="spanError" *ngIf="!registerForm.controls.lastname.pristine && registerForm.controls.lastname.value === ''">*</span>Lastname:
+    </span>
+    <input id="lastname" type="text" class="" formControlName="lastname"  >
+  </label>
+  <label class="userName">
+    <span class="">
+      <span class="spanError" *ngIf="!registerForm.controls.username.pristine && registerForm.controls.username.value === ''">*</span>Username:
+    </span>
+    <input id="username" type="text" class="" formControlName="username" >
+  </label>
+  <label class="">Password:
+    <input id="password" type="password" class="" formControlName="password">
+  </label>
+  <label class="">Password again:
+    <input id="password2" type="password" class="" formControlName="password2">
+  </label>
+  <label class="birthDay">
+    <span class="">
+      <span class="spanError" *ngIf="!registerForm.controls.birthDate.pristine && registerForm.controls.birthDate.value === ''">*</span>Birthdate:
+    </span>
+    <input id="birthDate" type="text" class="" type="date" formControlName="birthDate" value="01-02-1990" >
+  </label>
+  <label class="">Area:
+    <input id="area" type="text" class="" formControlName="area">
+  </label>
+  <label class="" *ngIf="false"> <span> Rating: <span>{{registerForm.controls.rating.value}}</span></span>
+    <input id="rating" type="range" class="" formControlName="rating" min="1" max="5" step="0.01">
+  </label>
+  <label class="" *ngIf="registerForm.controls.isSitter.value">Gender:
+    <input id="gender" type="text" class="" formControlName="gender">
+  </label>
+  <label class="" *ngIf="registerForm.controls.isSitter.value">Rate:
+    <input id="rate" type="number" class="" formControlName="rate">
+  </label>
+  <!-- <p>Form value: {{ registerForm.value | json }}</p>
+  <p>firstname value: {{ registerForm.controls.firstname.status | lowercase }}</p>
+  <p>Form status: {{ registerForm.status | json }}</p> -->
+  <button id="btnRegSubmit" type="submit">Register</button>
+</form>

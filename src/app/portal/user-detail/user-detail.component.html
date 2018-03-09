@@ -1,0 +1,37 @@
+<section class="container babyContainer">
+ <div class="babyContainer__baby" *ngIf="babyDetail">
+   <form [formGroup]="editBaby" (submit)="updateBaby()">
+  <ul>
+    <li (click)="edit('babyName')">Full name: {{babyDetail.firstname}} {{babyDetail.lastname}}</li>
+    <li *ngIf="editName">
+      <input formControlName="firstname" type="text" placeholder="firstname">
+      <input formControlName="lastname" type="text" placeholder="lastname">
+    </li>
+    <li (click)="edit('babyBirthday')" >Birthday: {{babyDetail.birthdate | date:'mediumDate'}}</li>
+    <li *ngIf="editBday">
+      <input type="date" formControlName="birthdate" value="01-02-1990">
+    </li>
+    <li>Area: {{babyDetail.area}}</li>
+    <li *ngIf="babyDetail.rating.length > 0">rating: {{babyDetail.rating}}</li>
+  </ul>
+  <button type="submit" *ngIf="editName">submit</button>
+ <button (click)="deleteBaby(babyDetail.id)" >Delete</button>
+</form>
+</div>
+<div class="babyContainer__baby" *ngIf="sitterDetail">
+  <form [formGroup]="editSitter" (submit)="updateSitter()">
+    <ul>
+      <li (click)="edit('sitterName')">Full name: {{sitterDetail.firstname}} {{sitterDetail.lastname}}</li>
+      <li *ngIf="editName">
+        <input formControlName="firstname" type="text" placeholder="firstname">
+        <input formControlName="lastname" type="text" placeholder="lastname">
+      </li>
+      <li>Birthday: {{sitterDetail.birthdate | date:'mediumDate'}}</li>
+      <li>Area: {{sitterDetail.area}}</li>
+      <li *ngIf="sitterDetail.rating.length > 0">rating: {{sitterDetail.rating}}</li>
+    </ul>
+    <button type="submit" *ngIf="editName">submit</button>
+    <button (click)="deleteSitter(sitterDetail.id)">Delete</button>
+  </form>
+</div>
+</section>

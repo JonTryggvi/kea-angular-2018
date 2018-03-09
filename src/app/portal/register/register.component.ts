@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Validator } from '../enteties/validate';
+import { DataService } from '../../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,14 +10,13 @@ import { Validator } from '../enteties/validate';
 })
 export class RegisterComponent implements OnInit {
 
-  myValidator = new Validator();
+  // myValidator = new Validator();
   registerForm: FormGroup;
   registerFormTitle = 'Baby Form';
 
-  theIputFixed;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private data: DataService, private router: Router) {
     this.registerForm = this.fb.group({
-      isSitter: [''],
+      isSitter: [false],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       birthDate: ['1980-01-01', Validators.required],
@@ -24,16 +24,24 @@ export class RegisterComponent implements OnInit {
       rating: [1, Validators.required],
       gender: ['', Validators.required],
       rate: ['', Validators.required],
-
+      username: [''],
+      password: [''],
+      password2: ['']
     });
 
   }
 // get the blur event with the input name
-  sendBlur(theInput) {
-    this.myValidator.checkforblur(theInput, this.registerForm);
-    // console.log(this.myValidator.spanClass_firstname);
-  }
 
+  onSubmit(form) {
+    console.log(form.value);
+    if (!this.registerForm.value.isSitter) {
+      this.data.addBaby(form.value);
+    } else {
+      this.data.addSitter(form.value);
+    }
+
+    this.router.navigate(['/portal/users-list']);
+  }
 
 // get the change event and update the DOM title
   onChange() {
