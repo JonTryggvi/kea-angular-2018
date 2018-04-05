@@ -2,9 +2,9 @@
  <div class="babyContainer__baby" *ngIf="babyDetail">
    <form [formGroup]="editBaby" (submit)="updateBaby()">
   <ul>
-    <li (click)="edit('babyName')">Full name: {{babyDetail.firstname}} {{babyDetail.lastname}}</li>
+    <li (click)="edit('babyName')">Full name: {{name}} {{babyDetail.lastname}}</li>
     <li *ngIf="editName">
-      <input formControlName="firstname" type="text" placeholder="firstname">
+      <input [(ngModel)]="name" formControlName="firstname" type="text" placeholder="firstname" value="{{babyDetail.firstName}}">
       <input formControlName="lastname" type="text" placeholder="lastname">
     </li>
     <li (click)="edit('babyBirthday')" >Birthday: {{babyDetail.birthdate | date:'mediumDate'}}</li>

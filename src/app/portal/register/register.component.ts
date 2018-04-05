@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../../data.service';
 import { Router } from '@angular/router';
+import { UsersActions } from '../../users.actions';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +16,9 @@ export class RegisterComponent implements OnInit {
   // myValidator = new Validator();
   registerForm: FormGroup;
   registerFormTitle = 'Baby Form';
-
-  constructor(private fb: FormBuilder, private data: DataService, private router: Router) {
+  private isBaby: boolean;
+  // tslint:disable-next-line:max-line-length
+  constructor(private fb: FormBuilder, private data: DataService, private router: Router, private usersActions: UsersActions, private ngRedux: NgRedux<IAppState>) {
     this.registerForm = this.fb.group({
       isSitter: [false],
       firstname: ['', Validators.required],
@@ -53,5 +57,9 @@ export class RegisterComponent implements OnInit {
     // console.log(this.registerForm);
   }
   ngOnInit() {
+    this.ngRedux.select(state => state.users).subscribe(res => {
+      console.log('res', res.babies);
+      this.isBaby = res.isBaby;
+    });
   }
 }

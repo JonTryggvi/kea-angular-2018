@@ -6,7 +6,7 @@ export class PasswordValidator {
     return function passwordValidator(control: FormControl): { [s: string]: boolean } {
 
       // Write code here..
-      if (!control.value.match(/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/)) { /// ^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/
+      if (!control.value.match(/^123/)) { /// ^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/
         return { invalidPassword: true };
       }
 

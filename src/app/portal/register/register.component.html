@@ -1,9 +1,10 @@
 
-<form [formGroup]="registerForm" (submit)="onSubmit(registerForm)" novalidate>
+<form [formGroup]="registerForm" (submit)="insertNewBaby(registerForm)" novalidate>
   <h2>{{ registerFormTitle }}</h2>
   <!-- <h1 *ngIf="registerForm.controls.isSitter.value">Sitter</h1> -->
   <label>Sitter:
-    <input type="checkbox" formControlName="isSitter" (change)="onChange()">
+    {{registerForm.value.isSitter}}
+    <input type="checkbox" formControlName="isSitter" (change)="isBaby ? usersActions.setType(false) : usersActions.setType(true)">
   </label>
 
   <label class="firstname">
