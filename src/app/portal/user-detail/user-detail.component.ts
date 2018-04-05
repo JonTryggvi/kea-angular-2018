@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-user-detail',

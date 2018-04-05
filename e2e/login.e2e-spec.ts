@@ -27,9 +27,7 @@ describe('Log in', () => {
     browser.sleep(30000);
   });
 
-  // it('2.1: Should not update an existing baby with invalid data', async () => {
 
-  // });
 
 
 

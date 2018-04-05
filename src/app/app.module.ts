@@ -19,6 +19,10 @@ import { FrontpageComponent } from './home/frontpage/frontpage.component';
 import { DataService } from './data.service';
 import { UsersListComponent } from './portal/users-list/users-list.component';
 import { UserDetailComponent } from './portal/user-detail/user-detail.component';
+import { UsersActions } from './users.actions';
+import { NgRedux, DevToolsExtension, NgReduxModule } from '@angular-redux/store';
+import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
+import { rootReducer, IAppState } from './store/store'; // Added this to get the root reducer
 
 
 @NgModule({
@@ -41,9 +45,20 @@ import { UserDetailComponent } from './portal/user-detail/user-detail.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgReduxModule, NgReduxRouterModule.forRoot()
+
   ],
-  providers: [AuthGuardService, AuthService, DataService],
+  providers: [AuthGuardService, AuthService, DataService, UsersActions],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private ngRedux: NgRedux<IAppState>,
+    private devTool: DevToolsExtension,
+    private ngReduxRouter: NgReduxRouter, ) {
+
+    this.ngRedux.configureStore(rootReducer, {});
+
+    ngReduxRouter.initialize(/* args */);
+  }
+}
