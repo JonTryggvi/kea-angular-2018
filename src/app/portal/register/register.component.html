@@ -1,5 +1,5 @@
 
-<form [formGroup]="registerForm" (submit)="insertNewBaby(registerForm)" novalidate>
+<form [formGroup]="registerForm" (submit)="onSubmit(registerForm)" novalidate>
   <h2>{{ registerFormTitle }}</h2>
   <!-- <h1 *ngIf="registerForm.controls.isSitter.value">Sitter</h1> -->
   <label>Sitter:

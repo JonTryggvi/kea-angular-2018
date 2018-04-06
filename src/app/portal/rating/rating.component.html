@@ -1,0 +1,4 @@
+<form novalidate [formGroup]="rateForm" (submit)="onSubmit(rateForm)">
+  <input type="range" min="0" max="5" formControlName="inpRating">
+  <button type="submit">submit rating of <br> {{rateForm.controls.inpRating.value}} stars</button>
+</form>

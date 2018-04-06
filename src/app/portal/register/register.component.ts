@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { UsersActions } from '../../users.actions';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/store';
+import { Baby } from '../../enteties/baby';
+import { Sitter } from '../../enteties/sitter';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,12 @@ export class RegisterComponent implements OnInit {
   registerFormTitle = 'Baby Form';
   private isBaby: boolean;
   // tslint:disable-next-line:max-line-length
-  constructor(private fb: FormBuilder, private data: DataService, private router: Router, private usersActions: UsersActions, private ngRedux: NgRedux<IAppState>) {
+  constructor(
+    private fb: FormBuilder,
+    private data: DataService,
+    private router: Router,
+    private usersActions: UsersActions,
+    private ngRedux: NgRedux<IAppState>) {
     this.registerForm = this.fb.group({
       isSitter: [false],
       firstname: ['', Validators.required],
@@ -37,11 +44,15 @@ export class RegisterComponent implements OnInit {
 // get the blur event with the input name
 
   onSubmit(form) {
-    console.log(form.value);
+    // console.log(form.value);
     if (!this.registerForm.value.isSitter) {
-      this.data.addBaby(form.value);
+      // this.data.addBaby(form.value);
+      const baby: Baby = form.value as Baby;
+      this.usersActions.createBaby(baby);
     } else {
-      this.data.addSitter(form.value);
+      // this.data.addSitter(form.value);
+      const sitter: Sitter = form.value as Sitter;
+      this.usersActions.createSitter(sitter);
     }
 
     this.router.navigate(['/portal/users-list']);
@@ -58,7 +69,7 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit() {
     this.ngRedux.select(state => state.users).subscribe(res => {
-      console.log('res', res.babies);
+      // console.log('res', res.babies);
       this.isBaby = res.isBaby;
     });
   }

@@ -11,6 +11,7 @@ import { AboutComponent } from './home/about/about.component';
 import { FrontpageComponent } from './home/frontpage/frontpage.component';
 import { UsersListComponent } from './portal/users-list/users-list.component';
 import { UserDetailComponent } from './portal/user-detail/user-detail.component';
+import { RatingComponent } from './portal/rating/rating.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,10 @@ const routes: Routes = [
         path: 'user-detail/:id',
         component: UserDetailComponent
       },
+      {
+        path: 'rating/:id',
+        component: RatingComponent
+      }
     ]
   },
    {

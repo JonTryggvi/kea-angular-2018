@@ -1,66 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Baby } from './enteties/baby';
 import { Sitter } from './enteties/sitter';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from './store/store';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class DataService {
 //  Call to web servise to get data.
 // add dummy data until we can do that
+  subscription;
+  babies: Baby[];
+  sitters: Sitter[];
 
-  babies: Baby[] = [
-    {
-      id: 1,
-      firstname: 'Oliver',
-      lastname: 'Twist',
-      birthdate: new Date(2017, 5, 17),
-      area: 'Greater Copenhagen',
-      rating: [],
-      username: 'oliver',
-      role: false
-    },
-    {
-      id: 2,
-      firstname: 'Elin',
-      lastname: 'Skúladóttir',
-      birthdate: new Date(2012, 8, 17),
-      area: 'Greater Copenhagen',
-      rating: [],
-      username: 'elin',
-      role: true
-    }
-  ];
 
-  sitters: Sitter[] = [
-    {
-      id: 3,
-      firstname: 'Jón',
-      lastname: 'Unnarsson',
-      birthdate: new Date(1981, 3, 27),
-      area: 'Greater Copenhagen',
-      rating: [],
-      rate: 200,
-      workArea: ['valby', 'vanlose'],
-      gender: 'male',
-      username: 'death',
-      role: false
-    },
-    {
-      id: 4,
-      firstname: 'JT',
-      lastname: 'Unnarsson',
-      birthdate: new Date(1981, 3, 27),
-      area: 'Greater Copenhagen',
-      rating: [],
-      rate: 200,
-      workArea: ['valby', 'vanlose'],
-      gender: 'male',
-      username: 'death',
-      role: true
-    }
-  ];
-  constructor() { }
+  constructor(private ngRedux: NgRedux<IAppState>) {
+    this.subscription = this.subscription = this.ngRedux.select(state => state.users).subscribe(users => {
+      // console.log(users.sitters);
+      this.babies = users.babies;
+      this.sitters = users.sitters;
+    });
+   }
   filterdBaby;
   filterdSitter;
+  aBabies;
+
+
+  static randomNumberId(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   public filterData(id: number, type: String) {
     switch (type) {
       case 'baby':
@@ -68,7 +36,11 @@ export class DataService {
         return this.filterdBaby;
         // break;
       case 'sitter':
+        
+          
         this.filterdSitter = this.sitters.find(sitter => sitter.id === id);
+        
+        
         return this.filterdSitter;
         // break;
       default:
