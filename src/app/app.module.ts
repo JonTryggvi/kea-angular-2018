@@ -22,7 +22,8 @@ import { UserDetailComponent } from './portal/user-detail/user-detail.component'
 import { UsersActions } from './users.actions';
 import { NgRedux, DevToolsExtension, NgReduxModule } from '@angular-redux/store';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
-import { rootReducer, IAppState } from './store/store'; // Added this to get the root reducer
+import { rootReducer, IAppState } from './store/store';
+import { RatingComponent } from './portal/rating/rating.component'; // Added this to get the root reducer
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { rootReducer, IAppState } from './store/store'; // Added this to get the
     FrontpageComponent,
     UsersListComponent,
     UserDetailComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,

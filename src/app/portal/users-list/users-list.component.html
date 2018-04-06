@@ -12,7 +12,7 @@
     <tr *ngFor="let aBabie of aBabies" routerLink="/portal/user-detail/{{aBabie.id}}">
       <td>{{aBabie.firstname}} {{aBabie.lastname}}</td>
       <td>{{aBabie.area}}</td>
-      <td>{{aBabie.birthdate | date:'mediumDate' }}</td>
+      <td>{{aBabie.birthDate | date:'mediumDate' }}</td>
     </tr>
   </tbody>
 
@@ -34,6 +34,7 @@
         <td>{{aSitter.area}}</td>
         <td>{{aSitter.rate}}kr</td>
         <td *ngIf="aSitter.rating > 0">{{aSitter.rating}}</td>
+        <td routerLink="/portal/rating/{{aSitter.id}}">Rate sitter</td>
       </tr>
     </tbody>
    
