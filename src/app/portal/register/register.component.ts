@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       lastname: ['', Validators.required],
       birthDate: ['1980-01-01', Validators.required],
       area: ['', Validators.required],
-      rating: [1, Validators.required],
+      rating: [ [] , Validators.required],
       gender: ['', Validators.required],
       rate: ['', Validators.required],
       username: [''],

@@ -3,6 +3,7 @@ import { DataService } from '../../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, NgModel } from '@angular/forms';
+import { Rating } from '../../enteties/rating';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,6 +15,8 @@ export class UserDetailComponent implements OnInit {
   editBday = false;
   editBaby: FormGroup;
   editSitter: FormGroup;
+  ratings: Rating[];
+  iAvgRating: number;
 
   constructor(
     private router: Router,
@@ -24,7 +27,20 @@ export class UserDetailComponent implements OnInit {
 
   paramId = Number(this.route.snapshot.paramMap.get('id'));
   babyDetail = this.dataServise.filterData(this.paramId, 'baby');
-  sitterDetail = this.dataServise.filterData(this.paramId, 'sitter');
+  sitterDetail = this.dataServise.filterData(this.paramId, 'sitter'); 
+  
+  avgRating(arr) {
+    let sum = 0;
+    let avg = 0;
+    for (let j = 0; j < arr.length; j++) {
+      sum += arr[j].rating;
+    }
+    console.log(sum);
+    
+    avg = sum / arr.length;
+    return avg.toFixed(1);
+  }
+ 
   deleteBaby(id) {
     this.dataServise.deleteBaby(id, this.babyDetail);
     this.router.navigate(['/portal/users-list']);
@@ -82,7 +98,7 @@ export class UserDetailComponent implements OnInit {
     }
     // console.log(this.editSitter.controls);
     // console.log(this.sitterDetail);
-
+ 
   }
 
 

@@ -24,7 +24,7 @@
         <th>Sitter name</th>
         <th>Area</th>
         <th>Rate</th>
-        <th *ngIf="aSitters.rating > 0">Rating</th>
+        <th *ngIf="aSitters.length > 0">Rating</th>
       </tr>
     </thead>
   
@@ -33,7 +33,7 @@
         <td>{{aSitter.firstname}} {{aSitter.lastname}}</td>
         <td>{{aSitter.area}}</td>
         <td>{{aSitter.rate}}kr</td>
-        <td *ngIf="aSitter.rating > 0">{{aSitter.rating}}</td>
+        <td *ngIf="aSitter.rating.length > 0" >{{iAverageRating}}</td>
         <td routerLink="/portal/rating/{{aSitter.id}}">Rate sitter</td>
       </tr>
     </tbody>

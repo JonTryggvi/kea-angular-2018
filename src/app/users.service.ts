@@ -4,7 +4,12 @@ import { UsersState } from './store/store';
 @Injectable()
 export class UsersService {
   static getInitialUsersState(): UsersState {
-    return { isBaby: undefined, babies: [], sitters: [], ratings: [] };
+    return {
+      isBaby: undefined,
+      babies: [],
+      sitters: [],
+      ratings: []
+    };
   }
   
 }

@@ -31,7 +31,13 @@ describe('register reducer', () => {
     const initialState = UsersService.getInitialUsersState();
     deepFreeze(initialState);
     const afterState = UsersService.getInitialUsersState();
-
+    let rating = {
+      rating: 4,
+      message: 'great',
+      date: new Date()
+      // username: 'test baby 1',
+      // userId: 99
+    }
     const baby = {
       id: 99,
       firstname: 'Peter',
@@ -48,20 +54,14 @@ describe('register reducer', () => {
       lastname: 'Unnarsson',
       birthdate: new Date(2018, 0, 1),
       area: 'Copenhagen',
-      rating: [],
+      rating: [rating],
       username: 'test baby 1',
       role: true,
       gender: 'male',
       rate: 300,
       workArea: ['valby', 'vanlose']
     };
-    let rating = {
-      rating: 4,
-      message: 'great',
-      date: new Date(2018, 0, 1),
-      username: 'test baby 1',
-      userId: 99
-    }
+   
     // afterState.babies.push(baby);
     afterState.sitters.push(sitter);
     // afterState.ratings.push(rating)

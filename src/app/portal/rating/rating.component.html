@@ -1,4 +1,5 @@
-<form novalidate [formGroup]="rateForm" (submit)="onSubmit(rateForm)">
+<form novalidate [formGroup]="rateForm" (submit)="onSubmit(rateForm, $event)">
   <input type="range" min="0" max="5" formControlName="inpRating">
+  <textarea formControlName="inpRatingMsg" id="" cols="30" rows="10"></textarea>
   <button type="submit">submit rating of <br> {{rateForm.controls.inpRating.value}} stars</button>
 </form>
