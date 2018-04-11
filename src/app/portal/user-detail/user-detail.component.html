@@ -20,6 +20,7 @@
 </div>
 <div class="babyContainer__baby" *ngIf="sitterDetail">
   <form [formGroup]="editSitter" (submit)="updateSitter()">
+  
     <ul>
       <li (click)="edit('sitterName')">Full name: {{sitterDetail.firstname}} {{sitterDetail.lastname}}</li>
       <li *ngIf="editName">
@@ -28,7 +29,14 @@
       </li>
       <li>Birthday: {{sitterDetail.birthdate | date:'mediumDate'}}</li>
       <li>Area: {{sitterDetail.area}}</li>
-      <li *ngIf="sitterDetail.rating.length > 0">rating: {{sitterDetail.rating}}</li>
+      <li *ngIf="sitterDetail.rating.length > 0">rating: {{avgRating(sitterDetail.rating)}}</li>
+      <li *ngIf="sitterDetail.rating.length > 0"> 
+          <h3>Ratings from happy customers</h3>
+        <ul *ngFor="let rating of sitterDetail.rating">
+          <li><span>rating: {{rating.rating}}</span> <span>date: {{rating.date | date:'mediumDate'}}</span><br><span>{{rating.message}}</span></li>
+          <li></li>
+        </ul>
+      </li>
     </ul>
     <button type="submit" *ngIf="editName">submit</button>
     <button (click)="deleteSitter(sitterDetail.id)">Delete</button>

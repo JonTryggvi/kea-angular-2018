@@ -18,14 +18,18 @@ export class RatingComponent implements OnInit {
     private route: ActivatedRoute) { }
   
   paramId = Number(this.route.snapshot.paramMap.get('id'));
-  onSubmit(form) {
-    const rating: Rating = form.value as Rating;
+  onSubmit(form, event: Event) {
+    event.preventDefault();
+    let rating: Rating = form.value as Rating;
+    let date: Date = new Date();
+    rating.date = date;
     this.usersActions.rateSitter(this.paramId, rating);
-    // this.router.navigate(['/portal/users-list']);
+    this.router.navigate(['/portal/users-list']);
   }
   ngOnInit() {
     this.rateForm = this.fb.group({
-      inpRating: [0]
+      inpRating: [0],
+      inpRatingMsg: ['']
     });
   }
 

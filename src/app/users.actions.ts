@@ -31,7 +31,7 @@ export class UsersActions {
     });
   }
   createSitter(sitter: Sitter): void {
-    console.log(sitter);
+    // console.log(sitter);
     sitter.id = DataService.randomNumberId(0, 999999);
     this.ngRedux.dispatch({
       type: UsersActions.CREATE_SITTER,

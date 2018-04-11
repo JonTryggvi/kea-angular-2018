@@ -2,7 +2,7 @@ import { UsersActions } from './users.actions';
 import { UsersState } from './store/store';
 import { tassign } from 'tassign';
 import { UsersService } from './users.service';
-
+// import { Observable } from 'rxjs/Rx';
 const INITIAL_STATE: UsersState = UsersService.getInitialUsersState();
 
 export function usersReducer(state: UsersState = INITIAL_STATE, action: any) {
@@ -22,14 +22,27 @@ export function usersReducer(state: UsersState = INITIAL_STATE, action: any) {
     case UsersActions.RATE_SITTER:
       // action.payload has .sitterUsername:string and .rating:number
       // find the sitter the sitter with thte action .payload.sittersId
-      let newRatingSitterArray = [...state.sitters, action.payload];
       let sitterId = action.payload.sitterId;
-      let rating = action.payload.rating;
-
-      console.log(rating);
-      break;
-      // use spread operator to update the array
-
+      let jRating = action.payload.rating;
+      let jFixKeys = {
+        rating: jRating.inpRating,
+        message: jRating.inpRatingMsg,
+        date: jRating.date
+      };
+      
+      // get an array of all ids and find the index of the required review
+  
+      // console.log(rating);
+      let newSitterRateingArray = [...state.sitters];
+      let filteredSitterArray = newSitterRateingArray.find(sitter => sitter.id === sitterId);
+      // console.log(filteredSitterArray);
+      let newRatingsArray = [...filteredSitterArray.rating, jFixKeys]
+      filteredSitterArray.rating = newRatingsArray;
+     
+      // let newRatingAddedToArray = newRatingsArray.push(jRating);
+      // console.log(filteredSitterArray);
+      console.log(newSitterRateingArray);
+      return tassign(state, { sitters: newSitterRateingArray });
     default:
       return state;
   }
