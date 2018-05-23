@@ -3,13 +3,12 @@ import { combineReducers } from 'redux';
 import { usersReducer } from '../users.reducer';
 import { Sitter } from '../enteties/sitter';
 import { Baby } from '../enteties/baby';
-import { Rating } from '../enteties/rating';
 
 export class UsersState {
   isBaby: boolean;
   babies: Baby[];
   sitters: Sitter[];
-  ratings: Rating[];
+
 }
 
 export class IAppState {
